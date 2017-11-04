@@ -1,4 +1,3 @@
 defmodule <%= @project_name_camel_case %> do
-  @moduledoc false
-
+  @moduledoc File.read!(__DIR__ <> "/../README.md")
 end

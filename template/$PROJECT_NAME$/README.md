@@ -48,7 +48,7 @@ function(nil) # nil
 
 | Version | Change Summary |
 | ------- | -------------- |
-| [v0.0.1](https://github.com/your_username/<%= @project_name %>/releases/tag/0.0.1) | **TODO: add initial release notes ** |
+| [v0.0.1](https://hex.pm/packages/<%= @project_name %>/0.0.1) | **TODO: add initial release notes ** |
 
 ## Contributing
 
@@ -60,7 +60,7 @@ function(nil) # nil
 
 ## Maintainers
 
-- Sunny G [@sunny-g](https://github.com/sunny-g)
+- Sunny G - [@sunny-g](https://github.com/sunny-g)
 
 ## License
 
