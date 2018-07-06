@@ -2,23 +2,24 @@ defmodule <%= @project_name_camel_case %>.Mixfile do
   use Mix.Project
 
   @name    :<%= @project_name %>
-  @version "0.0.1"
+  @version "0.0.1-dev"
+  @description """
+
+  """
 
   @deps [
   ]
 
   @dev_deps [
-    {:credo,          "~> 0.8", only: [:dev, :test], runtime: false},
-    {:ex_doc,         ">0.0.0", only: [:dev, :test], runtime: false},
-    {:mix_test_watch, "~> 0.3", only: [:dev, :test], runtime: false},
+    {:credo,          "~> 0.9",   only: [:dev, :test], runtime: false},
+    {:ex_doc,         "~> 0.18",  only: [:dev, :test], runtime: false},
+    {:mix_test_watch, "~> 0.6",   only: [:dev, :test], runtime: false},
   ]
 
-  @maintainers ["Sunny G"]
-  @github      "https://github.com/sunny-g/<%= @project_name %>"
-
-  @description """
-
-  """
+  @maintainers  ["Sunny G"]
+  @github       "https://github.com/sunny-g/<%= @project_name %>"
+  @files        ["lib", "mix.exs", "README.md"]
+  @licenses     ["MIT"]
 
   # ------------------------------------------------------------
 
@@ -27,23 +28,19 @@ defmodule <%= @project_name_camel_case %>.Mixfile do
 
     [ app:              @name,
       version:          @version,
-      elixir:           "~> 1.4",
+      elixir:           "~> 1.6",
 <%= if @in_umbrella? do %>
-      build_path:      "../../_build",
-      config_path:     "../../config/config.exs",
-      deps_path:       "../../deps",
-      lockfile:        "../../mix.lock",
+      build_path:       "../../_build",
+      config_path:      "../../config/config.exs",
+      deps_path:        "../../deps",
+      lockfile:         "../../mix.lock",
       start_permanent: in_production,
 <% else %>
       deps:             @deps ++ @dev_deps,
       build_embedded:   in_production,
       start_permanent:  in_production,
       description:      @description,
-      docs: [
-        main:           "readme",
-        source_url:     @github,
-        extras:         ["README.md"],
-      ],
+      docs:             docs(),
       package:          package(),
 <% end %>
     ]
@@ -63,12 +60,20 @@ defmodule <%= @project_name_camel_case %>.Mixfile do
 
   defp package do
     [ name:        @name,
-      files:       ["lib", "mix.exs", "README.md"],
+      files:       @files,
       maintainers: @maintainers,
-      licenses:    ["MIT"],
+      licenses:    @licenses,
       links:       %{
         "GitHub" => @github,
       },
+    ]
+  end
+
+  defp docs do
+    [
+      main:       "readme",
+      source_url: @github,
+      extras:     ["README.md"],
     ]
   end
 end
