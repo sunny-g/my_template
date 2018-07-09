@@ -1,24 +1,13 @@
 defmodule <%= @project_name_camel_case %>.Mixfile do
   use Mix.Project
 
-  @name    :<%= @project_name %>
-  @version "0.0.1-dev"
-  @description """
-
+  @name         :<%= @project_name %>
+  @version      "0.0.1-dev"
+  @description  """
   """
-
-  @deps [
-  ]
-
-  @dev_deps [
-    {:credo,          "~> 0.9",   only: [:dev, :test], runtime: false},
-    {:ex_doc,         "~> 0.18",  only: [:dev, :test], runtime: false},
-    {:mix_test_watch, "~> 0.6",   only: [:dev, :test], runtime: false},
-  ]
-
-  @maintainers  ["Sunny G"]
   @github       "https://github.com/sunny-g/<%= @project_name %>"
   @files        ["lib", "mix.exs", "README.md"]
+  @maintainers  ["Sunny G"]
   @licenses     ["MIT"]
 
   # ------------------------------------------------------------
@@ -28,20 +17,20 @@ defmodule <%= @project_name_camel_case %>.Mixfile do
 
     [ app:              @name,
       version:          @version,
+      description:      @description,
       elixir:           "~> 1.6",
+      docs:             docs(),
+      package:          package(),
 <%= if @in_umbrella? do %>
       build_path:       "../../_build",
       config_path:      "../../config/config.exs",
       deps_path:        "../../deps",
       lockfile:         "../../mix.lock",
-      start_permanent: in_production,
+      start_permanent:  in_production,
 <% else %>
-      deps:             @deps ++ @dev_deps,
+      deps:             deps() ++ dev_deps(),
       build_embedded:   in_production,
       start_permanent:  in_production,
-      description:      @description,
-      docs:             docs(),
-      package:          package(),
 <% end %>
     ]
   end
@@ -56,7 +45,19 @@ defmodule <%= @project_name_camel_case %>.Mixfile do
       mod: {<%= @project_name_camel_case %>.Application, []},
 <% end %>
     ]
-    end
+  end
+
+  defp deps() do
+    [
+    ]
+  end
+
+  defp dev_deps() do
+    [ {:credo,          "~> 0.9",   only: [:dev, :test], runtime: false},
+      {:ex_doc,         "~> 0.18",  only: [:dev, :test], runtime: false},
+      {:mix_test_watch, "~> 0.6",   only: [:dev, :test], runtime: false},
+    ]
+  end
 
   defp package do
     [ name:        @name,
@@ -70,8 +71,7 @@ defmodule <%= @project_name_camel_case %>.Mixfile do
   end
 
   defp docs do
-    [
-      main:       "readme",
+    [ main:       "readme",
       source_url: @github,
       extras:     ["README.md"],
     ]

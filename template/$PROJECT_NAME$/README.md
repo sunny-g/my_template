@@ -1,12 +1,16 @@
 # <%= @project_name_camel_case %>
-> **TODO: short blurb about the project**
+> **TODO: short tagline/blurb about the project**
 
 [Source](https://github.com/sunny-g/<%= @project_name %>) | [Documentation](https://hexdocs.pm/<%= @project_name %>)
 
 [![Build Status](https://semaphoreci.com/api/v1/sunny-g/<%= @project_name %>/branches/master/badge.svg)](https://semaphoreci.com/sunny-g/<%= @project_name %>)
 
 **TODO: add project description**
+
+## Features
 **TODO: outline features**
+
+## Goals
 **TODO: define project goals (and if so, non-goals)**
 
 ## Installation
