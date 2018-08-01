@@ -48,6 +48,12 @@ function(0)   # nil
 function(nil) # nil
 ```
 
+## Testing
+
+```
+$ mix test
+```
+
 ## Changelog
 
 | Version | Change Summary |

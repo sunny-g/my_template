@@ -6,7 +6,7 @@ defmodule <%= @project_name_camel_case %>.Mixfile do
   @description  """
   """
   @github       "https://github.com/sunny-g/<%= @project_name %>"
-  @files        ["lib", "mix.exs", "README.md"]
+  @files        ["mix.exs", "mix.lock", "lib", "test", "README.md"]
   @maintainers  ["Sunny G"]
   @licenses     ["MIT"]
 
@@ -18,7 +18,7 @@ defmodule <%= @project_name_camel_case %>.Mixfile do
     [ app:              @name,
       version:          @version,
       description:      @description,
-      elixir:           "~> 1.6",
+      elixir:           "~> 1.7",
       docs:             docs(),
       package:          package(),
 <%= if @in_umbrella? do %>
@@ -40,10 +40,16 @@ defmodule <%= @project_name_camel_case %>.Mixfile do
     [ extra_applications: [
         :logger,
       ],
+      env: env(),
 <%= if @is_supervisor? do %>
       # Entry point module and parameters
       mod: {<%= @project_name_camel_case %>.Application, []},
 <% end %>
+    ]
+  end
+
+  def env() do
+    [
     ]
   end
 
