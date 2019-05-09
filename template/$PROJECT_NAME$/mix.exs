@@ -59,9 +59,11 @@ defmodule <%= @project_name_camel_case %>.Mixfile do
   end
 
   defp dev_deps() do
-    [ {:credo,          "~> 0.9",   only: [:dev, :test], runtime: false},
-      {:ex_doc,         "~> 0.18",  only: [:dev, :test], runtime: false},
-      {:mix_test_watch, "~> 0.6",   only: [:dev, :test], runtime: false},
+    [ {:credo,          "~> 1.0.0", only: [:dev, :test], runtime: false},
+      {:dialyxir,       "~> 0.5",   only: [:dev],        runtime: false},
+      {:ex_doc,         "~> 0.19",  only: [:dev],        runtime: false},
+      {:inch_ex, github: "rrrene/inch_ex", only: [:dev, :test], runtime: false},
+      {:mix_test_watch, "~> 0.8",   only: [:dev],        runtime: false},
     ]
   end
 
