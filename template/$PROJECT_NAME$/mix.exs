@@ -15,22 +15,27 @@ defmodule <%= @project_name_camel_case %>.Mixfile do
   def project do
     in_production = Mix.env == :prod
 
-    [ app:              @name,
-      version:          @version,
-      description:      @description,
-      elixir:           "~> 1.7",
-      docs:             docs(),
-      package:          package(),
+    [ app:                @name,
+      version:            @version,
+      description:        @description,
+      docs:               docs(),
+      package:            package(),
 <%= if @in_umbrella? do %>
-      build_path:       "../../_build",
-      config_path:      "../../config/config.exs",
-      deps_path:        "../../deps",
-      lockfile:         "../../mix.lock",
-      start_permanent:  in_production,
+      build_path:         "../../_build",
+      config_path:        "../../config/config.exs",
+      deps_path:          "../../deps",
+      lockfile:           "../../mix.lock",
+      start_permanent:    in_production,
 <% else %>
-      deps:             deps() ++ dev_deps(),
-      build_embedded:   in_production,
-      start_permanent:  in_production,
+      deps:               deps() ++ dev_deps(),
+      test_coverage:      [tool: ExCoveralls],
+      preferred_cli_env:  [
+        coveralls: :test,
+        "coveralls.detail": :test,
+      ],
+      elixir:             "~> 1.8",
+      build_embedded:     in_production,
+      start_permanent:    in_production,
 <% end %>
     ]
   end
@@ -61,6 +66,7 @@ defmodule <%= @project_name_camel_case %>.Mixfile do
   defp dev_deps() do
     [ {:credo,          "~> 1.0.0", only: [:dev, :test], runtime: false},
       {:dialyxir,       "~> 0.5",   only: [:dev],        runtime: false},
+      {:excoveralls,    "~> 0.10",  only: [:test]},
       {:ex_doc,         "~> 0.19",  only: [:dev],        runtime: false},
       {:inch_ex, github: "rrrene/inch_ex", only: [:dev, :test], runtime: false},
       {:mix_test_watch, "~> 0.8",   only: [:dev],        runtime: false},
